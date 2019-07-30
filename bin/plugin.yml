@@ -1,0 +1,36 @@
+name: UwUPunishments
+author: Sms_Gamer
+version: 0.1
+main: uwu.smsgamer.uwup.Main
+description: PUwUnish ppl.
+
+commands:
+   punish:
+      usage: /punish <player> <is silent> <reason> [extra]
+      description: Main punish command.
+      aliases: [pu]
+permissions:
+   punish.*:
+      description: Allows full use of the Punish plugin.
+      default: op
+      children:
+         punish.use: true
+         punish.spam: true
+         punish.banavoid: true
+         punish.hack: true
+         punish.other: true
+   punish.use:
+      description: Allows use of the main Punish command.
+      default: op
+   punish.spam: 
+      description: Allows to punish someone for spamming.
+      default: op
+   punish.banavoid:
+      description: Allows to punish someone for ban avoiding.
+      default: op
+   punish.hack:
+      description: Allows to punish someone for hacking.
+      default: op
+   punish.other:
+      description: Allows to punish someone for other stuff.
+      default: op
