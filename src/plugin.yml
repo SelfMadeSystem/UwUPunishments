@@ -15,22 +15,10 @@ permissions:
       default: op
       children:
          punish.use: true
-         punish.spam: true
-         punish.banavoid: true
-         punish.hack: true
-         punish.other: true
+         punish.punish: true
    punish.use:
       description: Allows use of the main Punish command.
       default: op
-   punish.spam: 
-      description: Allows to punish someone for spamming.
-      default: op
-   punish.banavoid:
-      description: Allows to punish someone for ban avoiding.
-      default: op
-   punish.hack:
-      description: Allows to punish someone for hacking.
-      default: op
-   punish.other:
-      description: Allows to punish someone for other stuff.
+   punish.punish: 
+      description: Allows to punish someone.
       default: op
