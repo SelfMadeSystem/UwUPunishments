@@ -1,8 +1,13 @@
-prefix: "&cUwU >> "
 
-bc_message: "%prefix%%player% has been punished for %reason%."
+bc_msg: "&cUwU >> %player% has been punished for %reason%."
 
-punished: "%prefix%%b%player% has been punished for %reson%."
+punished_msg: "&cUwU >>&b %player% has been punished for %reason%. vl: %vl%"
+
+forgive_msg: "&cUwU >>&b %player% has been forgiven for %reason%. vl: %vl%"
+
+no_type: "&cUwU >>&b There is no type for %reason%."
 
 types:
-   spam:
+   zz:
+      1: "say player: %player% reason: %reason% vl: %vl% &6test &&"
+      2: "minecraft:kick %player% You have been kicked by a moderator for &7%reason%"

@@ -6,19 +6,17 @@ description: PUwUnish ppl.
 
 commands:
    punish:
-      usage: /punish <player> <is silent> <reason> [extra]
-      description: Main punish command.
+      usage: /punish <player> <is silent> <reason>
+      description: Punish someone.
       aliases: [pu]
+   forgive:
+      usage: /forgive <player> <reason>
+      description: Forgive someone.
+      aliases: [fo]
 permissions:
-   punish.*:
-      description: Allows full use of the Punish plugin.
+   uwu.punish.use:
+      description: Allows to Punish command.
       default: op
-      children:
-         punish.use: true
-         punish.punish: true
-   punish.use:
-      description: Allows use of the main Punish command.
-      default: op
-   punish.punish: 
-      description: Allows to punish someone.
+   uwu.forgive.use:
+      description: Allows to forgive someone.
       default: op
