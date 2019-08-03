@@ -1,0 +1,8 @@
+prefix: "&cUwU >> "
+
+bc_message: "%prefix%%player% has been punished for %reason%."
+
+punished: "%prefix%%b%player% has been punished for %reson%."
+
+types:
+   spam:
