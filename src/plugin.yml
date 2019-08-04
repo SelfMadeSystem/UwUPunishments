@@ -1,6 +1,6 @@
 name: UwUPunishments
 author: Sms_Gamer
-version: 1
+version: 0.8
 main: uwu.smsgamer.uwup.Main
 description: PUwUnish ppl.
 
@@ -9,14 +9,14 @@ commands:
       usage: /punish <player> <broadcast> <reason>
       description: Punish someone.
       aliases: [pu]
-   #forgive:
-      #usage: /forgive <player> <reason>
-      #description: Forgive someone.
-      #aliases: [fo]
+   forgive:
+      usage: /forgive <player> <reason>
+      description: Forgive someone.
+      aliases: [fo]
 permissions:
    uwu.punish.use:
       description: Allows to Punish command.
       default: op
-   #uwu.forgive.use:
-      #description: Allows to forgive someone.
-      #default: op
+   uwu.forgive.use:
+      description: Allows to forgive someone.
+      default: op
