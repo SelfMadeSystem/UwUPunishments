@@ -8,6 +8,14 @@ forgive_msg: "&cUwU >>&b %player% has been forgiven for %reason%. vl: %vl%"
 no_type: "&cUwU >>&b There is no type for %reason%."
 
 types:
-   zz:
-      1: "say player: %player% reason: %reason% vl: %vl% &6test &&"
-      2: "minecraft:kick %player% You have been kicked by a moderator for &7%reason%"
+   spam:
+      1: "tellraw %player% {\"text\":\"&cYou have been warned for spam. Warnings: %vl%\"}"
+      2: "tellraw %player% {\"text\":\"&cYou have been warned for spam. Warnings: %vl%\"}"
+      3: "tellraw %player% {\"text\":\"&cYou have been warned for spam. Warnings: %vl%\"}"
+      4: "emute %player%"
+   hack:
+      1: "minecraft:kick %player% &cYou have been kicked for hacking. Warnings: %vl%"
+      2: "minecraft:kick %player% &cYou have been kicked for hacking. Warnings: %vl%"
+      3: "minecraft:ban %player% &cYou have been banned for hacking."
+   banavoid:
+      3: "minecraft:ban-ip %player% &cYou have been banned for ban avoiding."
