@@ -21,14 +21,12 @@ public class Commands implements CommandExecutor {
 		if (cmd.getName().equalsIgnoreCase("pu") || cmd.getName().equalsIgnoreCase("punish")) {
 			if (sender.hasPermission("uwu.punish.use")) {
 				if (args.length <= 2) {
-					sender.sendMessage(Vars.prefix + "Usage: /punish <player> <broadcast> <reason>");
+					sender.sendMessage(ChatColor.RED + "UwU >> Usage: /punish <player> <broadcast> <reason>");
 					return true;
 				}
 				for (Player p : Bukkit.getOnlinePlayers()) {
 
 					if (args[0].equalsIgnoreCase(p.getName())) {
-						// test
-
 						if (Main.instance.getConfig().get("types." + args[2]) != null) {
 							// broadcast
 							if (args[1].startsWith("t") || args[1].startsWith("y")) {
@@ -63,79 +61,65 @@ public class Commands implements CommandExecutor {
 							// No type
 						} else {
 							sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(
-									(String) Main.instance.getConfig().get("no_type"), p.getName(), args[2], 0)));
+									Main.instance.getConfig().getString("no_type"), p.getName(), args[2], 0)));
 						}
+						return true;
 					}
-
 				}
+				sender.sendMessage(ChatUtils.colorize(
+						ChatUtils.phReplace(Main.instance.getConfig().getString("no_player"), args[0], args[2], 0)));
 			} else {
-				int rand = (int) Math.floor(Math.random() * 9);
-				if (rand == 0) {
-					sender.sendMessage(Vars.prefix + "Really? Ya think ya got perms for dat buddy? Nah brah.");
-				}
-				if (rand == 1) {
-					sender.sendMessage(ChatColor.RED
-							+ "I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.");
-				}
-				if (rand == 2) {
-					sender.sendMessage(ChatColor.DARK_RED + "You do not have access to that command.");
-				}
-				if (rand == 3) {
-					sender.sendMessage(Vars.prefix + "OwOooof. You don't got perms buddy, sorry.");
-				}
-				if (rand == 4) {
-					sender.sendMessage(ChatColor.RED + "No permission");
-				}
-				if (rand == 5) {
-					sender.sendMessage("Unkown command. Type \"/help\" for help.");
-				}
-				if (rand == 6) {
-					sender.sendMessage(ChatColor.YELLOW + "Oof");
-				}
-				if (rand == 7) {
-					sender.sendMessage(ChatColor.MAGIC + "Hi, I exist.");
-				}
-				if (rand == 8) {
-					sender.sendMessage("" + ChatColor.DARK_RED + ChatColor.BOLD + "“" + ChatColor.DARK_RED + "w”");
-				}
-
+				sender.sendMessage(Vars.no_perm);
 			}
 		}
 		if (cmd.getName().equalsIgnoreCase("fo") || cmd.getName().equalsIgnoreCase("forgive")) {
 			if (sender.hasPermission("uwu.forgive.use")) {
-				sender.sendMessage("The forgive command isn't done yet. Please wait untill a further update.");
-			} else {
-				int rand = (int) Math.floor(Math.random() * 9);
-				if (rand == 0) {
-					sender.sendMessage(Vars.prefix + "Really? Ya think ya got perms for dat buddy? Nah brah.");
+				if (args.length <= 1) {
+					sender.sendMessage(ChatColor.RED + "UwU >> Usage: /forgive <player> <reason>");
+					return true;
 				}
-				if (rand == 1) {
-					sender.sendMessage(ChatColor.RED
-							+ "I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.");
-				}
-				if (rand == 2) {
-					sender.sendMessage(ChatColor.DARK_RED + "You do not have access to that command.");
-				}
-				if (rand == 3) {
-					sender.sendMessage(Vars.prefix + "OwOooof. You don't got perms buddy, sorry.");
-				}
-				if (rand == 4) {
-					sender.sendMessage(ChatColor.RED + "No permission");
-				}
-				if (rand == 5) {
-					sender.sendMessage("Unkown command. Type \"/help\" for help.");
-				}
-				if (rand == 6) {
-					sender.sendMessage(ChatColor.YELLOW + "Oof");
-				}
-				if (rand == 7) {
-					sender.sendMessage(ChatColor.MAGIC + "Hi, I exist.");
-				}
-				if (rand == 8) {
-					sender.sendMessage(
-							Vars.prefix + ChatColor.DARK_RED + ChatColor.BOLD + "“" + ChatColor.DARK_RED + "w”");
-				}
+				for (Player p : Bukkit.getOnlinePlayers()) {
 
+					if (args[0].equalsIgnoreCase(p.getName())) {
+						if (Main.instance.getConfig().get("types." + args[1]) != null) {
+							// set vl
+							if (ConfigManager.instance.getPlayers()
+									.get("Punishments." + args[1] + ".Level." + p.getUniqueId()) != null) {
+								if (ConfigManager.instance.getPlayers()
+										.getInt("Punishments." + args[1] + ".Level." + p.getUniqueId()) != 0) {
+
+									ConfigManager.instance.getPlayers()
+											.set("Punishments." + args[1] + ".Level." + p.getUniqueId(),
+													ConfigManager.instance.getPlayers().getInt(
+															("Punishments." + args[1] + ".Level." + p.getUniqueId()))
+															- 1);
+								}
+							}
+							// send message
+							sender.sendMessage(ChatUtils.phReplace(Vars.forgive, p.getName(), args[1],
+									ConfigManager.instance.getPlayers()
+											.getInt("Punishments." + args[1] + ".Level." + p.getUniqueId())));
+							ConfigManager.instance.savePlayers();
+							// no type
+						} else {
+							sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(
+									Main.instance.getConfig().getString("no_type"), p.getName(), args[1], 0)));
+						}
+						return true;
+					}
+				}
+				sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_player, args[0], args[1], 0)));
+			} else {
+				sender.sendMessage(Vars.no_perm);
+			}
+		}
+		if (cmd.getName().equalsIgnoreCase("weload")) {
+			if (sender.hasPermission("uwu.pu.reload.use")) {
+				Main.instance.reloadConfig();
+				ConfigManager.instance.reloadPlayers();
+				sender.sendMessage(ChatColor.GREEN + "Reloaded config.");
+			} else {
+				sender.sendMessage(Vars.no_perm);
 			}
 		}
 		return true;
