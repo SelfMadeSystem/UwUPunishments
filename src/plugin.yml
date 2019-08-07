@@ -1,6 +1,6 @@
 name: UwUPunishments
 author: Sms_Gamer
-version: 1.0
+version: 1.2
 main: uwu.smsgamer.uwup.Main
 description: PUwUnish ppl.
 commands:
@@ -33,6 +33,6 @@ permissions:
    uwu.pu.reload.use:
       description: Allows to reload the plugin.
       default: op
-   uwu.checkvio.use:
+   uwu.checkvl.use:
       description: Allows to check violations of a person.
       default: op
