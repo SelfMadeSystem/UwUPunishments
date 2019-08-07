@@ -24,50 +24,58 @@ public class Commands implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "UwU >> Usage: /punish <player> <broadcast> <reason>");
 					return true;
 				}
-				for (Player p : Bukkit.getOnlinePlayers()) {
+				if (Bukkit.getPlayer(args[0]) != null) {
+					Player p = Bukkit.getPlayer(args[0]);
+					for (String num : Main.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
+						if (Main.instance.getConfig().getStringList("types." + num + ".alias").contains(args[2])) {
 
-					if (args[0].equalsIgnoreCase(p.getName())) {
-						if (Main.instance.getConfig().get("types." + args[2]) != null) {
 							// broadcast
+
 							if (args[1].startsWith("t") || args[1].startsWith("y")) {
 								Bukkit.broadcastMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.bc_msg, p.getName(),
 										args[2], (int) ConfigManager.instance.getPlayers()
-												.get("Punishments." + args[2] + ".Level." + p.getUniqueId()))));
+												.get("Punishments." + num + ".Level." + p.getUniqueId()))));
 							}
+
 							// set vl
-							ConfigManager.instance.getPlayers().set(
-									"Punishments." + args[2] + ".Level." + p.getUniqueId(),
+
+							ConfigManager.instance.getPlayers().set("Punishments." + num + ".Level." + p.getUniqueId(),
 									ConfigManager.instance.getPlayers()
-											.getInt(("Punishments." + args[2] + ".Level." + p.getUniqueId())) + 1);
+											.getInt(("Punishments." + num + ".Level." + p.getUniqueId())) + 1);
+
 							// send message
+
 							sender.sendMessage(
 									ChatUtils.phReplace(Vars.ps_msg, p.getName(), args[2], (int) ConfigManager.instance
-											.getPlayers().get("Punishments." + args[2] + ".Level." + p.getUniqueId())));
+											.getPlayers().get("Punishments." + num + ".Level." + p.getUniqueId())));
+
 							// do command
-							if (Main.instance.getConfig()
-									.get("types." + args[2] + "." + ConfigManager.instance.getPlayers()
-											.get("Punishments." + args[2] + ".Level." + p.getUniqueId())) != null) {
+
+							if (Main.instance.getConfig().get("types." + num + "." + ConfigManager.instance.getPlayers()
+									.get("Punishments." + num + ".Level." + p.getUniqueId())) != null) {
 								Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-										ChatUtils.colorize(ChatUtils.phReplace(
-												(String) Main.instance.getConfig()
-														.get("types." + args[2] + "."
-																+ ConfigManager.instance.getPlayers()
-																		.get("Punishments." + args[2] + ".Level."
-																				+ p.getUniqueId())),
-												p.getName(), args[2], (int) ConfigManager.instance.getPlayers()
-														.get("Punishments." + args[2] + ".Level." + p.getUniqueId()))));
+										ChatUtils
+												.colorize(ChatUtils.phReplace(
+														(String) Main.instance.getConfig()
+																.get("types." + num + "."
+																		+ ConfigManager.instance.getPlayers()
+																				.get("Punishments." + num + ".Level."
+																						+ p.getUniqueId())),
+														p.getName(), num, (int) ConfigManager.instance.getPlayers().get(
+																"Punishments." + num + ".Level." + p.getUniqueId()))));
 							}
+
 							ConfigManager.instance.savePlayers();
-							// No type
-						} else {
-							sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(
-									Main.instance.getConfig().getString("no_type"), p.getName(), args[2], 0)));
+							return true;
 						}
-						return true;
 					}
+					sender.sendMessage(ChatUtils.colorize(
+							ChatUtils.phReplace(Main.instance.getConfig().getString("no_type"), args[0], args[2], 0)));
+
+				} else {
+					sender.sendMessage(ChatUtils.colorize(ChatUtils
+							.phReplace(Main.instance.getConfig().getString("no_player"), args[0], args[2], 0)));
 				}
-				sender.sendMessage(ChatUtils.colorize(
-						ChatUtils.phReplace(Main.instance.getConfig().getString("no_player"), args[0], args[2], 0)));
 			} else {
 				sender.sendMessage(Vars.no_perm);
 			}
@@ -78,46 +86,75 @@ public class Commands implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "UwU >> Usage: /forgive <player> <reason>");
 					return true;
 				}
-				for (Player p : Bukkit.getOnlinePlayers()) {
+				if (Bukkit.getPlayer(args[0]) != null) {
+					Player p = Bukkit.getPlayer(args[0]);
+					for (String num : Main.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
+						if (Main.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
 
-					if (args[0].equalsIgnoreCase(p.getName())) {
-						if (Main.instance.getConfig().get("types." + args[1]) != null) {
 							// set vl
 							if (ConfigManager.instance.getPlayers()
-									.get("Punishments." + args[1] + ".Level." + p.getUniqueId()) != null) {
+									.get("Punishments." + num + ".Level." + p.getUniqueId()) != null) {
 								if (ConfigManager.instance.getPlayers()
-										.getInt("Punishments." + args[1] + ".Level." + p.getUniqueId()) != 0) {
-
-									ConfigManager.instance.getPlayers()
-											.set("Punishments." + args[1] + ".Level." + p.getUniqueId(),
-													ConfigManager.instance.getPlayers().getInt(
-															("Punishments." + args[1] + ".Level." + p.getUniqueId()))
-															- 1);
+										.getInt("Punishments." + num + ".Level." + p.getUniqueId()) != 0) {
+									ConfigManager.instance.getPlayers().set(
+											"Punishments." + num + ".Level." + p.getUniqueId(),
+											ConfigManager.instance.getPlayers()
+													.getInt(("Punishments." + num + ".Level." + p.getUniqueId())) - 1);
 								}
 							}
+
 							// send message
-							sender.sendMessage(ChatUtils.phReplace(Vars.forgive, p.getName(), args[1],
-									ConfigManager.instance.getPlayers()
-											.getInt("Punishments." + args[1] + ".Level." + p.getUniqueId())));
+
+							sender.sendMessage(
+									ChatUtils.phReplace(Vars.forgive, p.getName(), args[1], ConfigManager.instance
+											.getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
+
 							ConfigManager.instance.savePlayers();
-							// no type
-						} else {
-							sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(
-									Main.instance.getConfig().getString("no_type"), p.getName(), args[1], 0)));
+							return true;
 						}
-						return true;
 					}
+					sender.sendMessage(ChatUtils.colorize(
+							ChatUtils.phReplace(Vars.no_type, args[0], args[1], 0)));
+					return true;
+				} else {
+					sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_player, args[0], args[1], 0)));
+				}
+			} else {
+				sender.sendMessage(Vars.no_perm);
+			}
+		}
+
+		if (cmd.getName().equalsIgnoreCase("cv") || cmd.getName().equalsIgnoreCase("checkvl")
+				|| cmd.getName().equalsIgnoreCase("checkviolations")) {
+			if (sender.hasPermission("uwu.forgive.use")) {
+				if (args.length <= 1) {
+					sender.sendMessage(ChatColor.RED + "UwU >> Usage: /checkviolations <player> <reason>");
+					return true;
+				}
+				if (Bukkit.getPlayer(args[0]) != null) {
+					Player p = Bukkit.getPlayer(args[0]);
+					for (String num : Main.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
+						if (Main.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
+							sender.sendMessage(
+									ChatUtils.phReplace(Vars.check_vl, p.getName(), num, ConfigManager.instance
+											.getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
+							return true;
+						}
+					}
+					sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_type, args[0], args[1], 0)));
+					return true;
 				}
 				sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_player, args[0], args[1], 0)));
 			} else {
 				sender.sendMessage(Vars.no_perm);
 			}
 		}
+
 		if (cmd.getName().equalsIgnoreCase("weload")) {
 			if (sender.hasPermission("uwu.pu.reload.use")) {
 				Main.instance.reloadConfig();
 				ConfigManager.instance.reloadPlayers();
-				sender.sendMessage(ChatColor.GREEN + "Reloaded config.");
+				sender.sendMessage(ChatColor.GREEN + "Maybe reloaded config.");
 			} else {
 				sender.sendMessage(Vars.no_perm);
 			}

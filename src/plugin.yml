@@ -14,6 +14,12 @@ commands:
       description: Forgive someone.
       aliases:
       - fo
+   checkviolations:
+      usage: /checkviolations <player> <reason>
+      description: Checks someone's violations.
+      aliases:
+      - cv
+      - checkvl
    weload:
       usage: /weload
       description: Reloads the plugin.
@@ -26,4 +32,7 @@ permissions:
       default: op
    uwu.pu.reload.use:
       description: Allows to reload the plugin.
+      default: op
+   uwu.checkvio.use:
+      description: Allows to check violations of a person.
       default: op

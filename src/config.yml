@@ -1,18 +1,35 @@
 bc_msg: '&cUwU >> %player% has been punished for %reason%.'
 punished_msg: '&cUwU >>&b %player% has been punished for %reason%. vl: %vl%'
 forgive_msg: '&cUwU >>&b %player% has been forgiven for %reason%. vl: %vl%'
-no_type: '&c&lError >>&c There is no type for &b%reason%&c.'
-no_player: '&c&lError >>&c &b%player%&c is not online.'
+no_type: '&c&lError>>&c There is no type for &b%reason%&c.'
+no_player: '&c&lError>>&c &b%player%&c is not online.'
 no_perm: '&4You do not have access to that command.'
+check_vl: '&cUwU >>&b %player% is at %vl% for %reason%.'
 types:
    spam:
-      1: 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-      2: 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-      3: 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-      4: emute %player%
+      alias:
+      - spam
+      - caps
+      '1': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
+      '2': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
+      '3': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
+      '4': emute %player%
    hack:
-      1: 'minecraft:kick %player% &cYou have been kicked for hacking. Warnings: %vl%'
-      2: 'minecraft:kick %player% &cYou have been kicked for hacking. Warnings: %vl%'
-      3: minecraft:ban %player% &cYou have been banned for hacking.
+      alias:
+      - hack
+      - hacks
+      - hacking
+      - killaura
+      - aura
+      - tower
+      - fly
+      - speed
+      - scaffold
+      '1': 'ekick %player% &cYou have been kicked for hacking. Warnings: %vl%'
+      '2': 'ekick %player% &cYou have been kicked for hacking. Warnings: %vl%'
+      '3': minecraft:ban %player% &cYou have been banned for hacking.
    banavoid:
-      1: minecraft:ban-ip %player% &cYou have been banned for ban avoiding.
+      alias:
+      - banavoid
+      - alts
+      '1': minecraft:ban-ip %player% &cYou have been banned for ban avoiding.

@@ -11,4 +11,5 @@ public class Vars {
 	public static String no_player = ChatUtils.colorize((String) Main.instance.getConfig().get("no_player"));
 	public static String forgive = ChatUtils.colorize((String) Main.instance.getConfig().get("forgive_msg"));
 	public static String no_perm = ChatUtils.colorize((String) Main.instance.getConfig().get("no_perm"));
+	public static String check_vl = ChatUtils.colorize((String) Main.instance.getConfig().get("check_vl"));
 }

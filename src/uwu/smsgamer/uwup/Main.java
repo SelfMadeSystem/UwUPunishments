@@ -23,6 +23,11 @@ public class Main extends JavaPlugin implements Listener {
 
 		getCommand("fo").setExecutor(cmds);
 		getCommand("forgive").setExecutor(cmds);
+		
+
+		getCommand("cv").setExecutor(cmds);
+		getCommand("checkvl").setExecutor(cmds);
+		getCommand("checkviolations").setExecutor(cmds);
 
 		getCommand("weload").setExecutor(cmds);
 	}
