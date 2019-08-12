@@ -152,12 +152,9 @@ public class Commands implements CommandExecutor {
 							sender.sendMessage(
 									ChatUtils.phReplace(Vars.check_vl, p.getName(), num, ConfigManager.instance
 											.getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
-							return true;
 						}
 					}
-					sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_type, args[0], args[1], 0)));
 					return true;
-
 				}
 				sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_player, args[0], args[1], 0)));
 			} else {
@@ -206,7 +203,7 @@ public class Commands implements CommandExecutor {
 							// send message
 
 							sender.sendMessage(
-									ChatUtils.phReplace(Vars.ps_msg, p.getName(), args[1], (int) ConfigManager.instance
+									ChatUtils.phReplace(Vars.set_vl, p.getName(), args[1], (int) ConfigManager.instance
 											.getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 							// Do command
 
