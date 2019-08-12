@@ -1,6 +1,6 @@
 name: UwUPunishments
 author: Sms_Gamer
-version: 1.2
+version: 1.3
 main: uwu.smsgamer.uwup.Main
 description: PUwUnish ppl.
 commands:
@@ -18,14 +18,20 @@ commands:
       usage: /checkviolations <player> <reason>
       description: Checks someone's violations.
       aliases:
-      - cv
+      - cvl
       - checkvl
    weload:
       usage: /weload
       description: Reloads the plugin.
+   setviolations:
+      usage: /setviolations <player> <reason> <do-action> <amount>
+      description: Reloads the plugin.
+      aliases:
+      - svl
+      - setvl
 permissions:
    uwu.punish.use:
-      description: Allows to Punish command.
+      description: Allows to Punish someone.
       default: op
    uwu.forgive.use:
       description: Allows to forgive someone.
@@ -34,5 +40,8 @@ permissions:
       description: Allows to reload the plugin.
       default: op
    uwu.checkvl.use:
-      description: Allows to check violations of a person.
+      description: Allows to check violations of someone.
+      default: op
+   uwu.setvl.use:
+      description: Allows to set violations of someone.
       default: op

@@ -21,8 +21,6 @@ import uwu.smsgamer.uwup.vars.Vars;
 
 public class Commands implements CommandExecutor {
 
-	public String cmd1 = "verbose";
-
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
@@ -35,8 +33,8 @@ public class Commands implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "UwU >> Usage: /punish <player> <broadcast> <reason>");
 					return true;
 				}
-				if (Bukkit.getPlayer(args[0]) != null) {
-					Player p = Bukkit.getPlayer(args[0]);
+				Player p = Bukkit.getPlayer(args[0]);
+				if (p != null && p.isOnline()) {
 					for (String num : Main.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
 						if (Main.instance.getConfig().getStringList("types." + num + ".alias").contains(args[2])) {
 
@@ -47,12 +45,9 @@ public class Commands implements CommandExecutor {
 										args[2], (int) ConfigManager.instance.getPlayers()
 												.get("Punishments." + num + ".Level." + p.getUniqueId()))));
 							}
-
 							// set vl
 
-							ConfigManager.instance.getPlayers().set("Punishments." + num + ".Level." + p.getUniqueId(),
-									ConfigManager.instance.getPlayers()
-											.getInt(("Punishments." + num + ".Level." + p.getUniqueId())) + 1);
+							pP(p, num, 1);
 
 							// set log
 
@@ -102,8 +97,8 @@ public class Commands implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "UwU >> Usage: /forgive <player> <reason>");
 					return true;
 				}
-				if (Bukkit.getPlayer(args[0]) != null) {
-					Player p = Bukkit.getPlayer(args[0]);
+				Player p = Bukkit.getPlayer(args[0]);
+				if (p != null && p.isOnline()) {
 					for (String num : Main.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
 						if (Main.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
 
@@ -112,10 +107,7 @@ public class Commands implements CommandExecutor {
 									.get("Punishments." + num + ".Level." + p.getUniqueId()) != null) {
 								if (ConfigManager.instance.getPlayers()
 										.getInt("Punishments." + num + ".Level." + p.getUniqueId()) != 0) {
-									ConfigManager.instance.getPlayers().set(
-											"Punishments." + num + ".Level." + p.getUniqueId(),
-											ConfigManager.instance.getPlayers()
-													.getInt(("Punishments." + num + ".Level." + p.getUniqueId())) - 1);
+									pP(p, num, -1);
 								}
 							}
 
@@ -139,15 +131,15 @@ public class Commands implements CommandExecutor {
 			}
 		}
 
-		if (cmd.getName().equalsIgnoreCase("cv") || cmd.getName().equalsIgnoreCase("checkvl")
+		if (cmd.getName().equalsIgnoreCase("cvl") || cmd.getName().equalsIgnoreCase("checkvl")
 				|| cmd.getName().equalsIgnoreCase("checkviolations")) {
 			if (sender.hasPermission("uwu.checkvl.use")) {
 				if (args.length == 0) {
 					sender.sendMessage(ChatColor.RED + "UwU >> Usage: /checkviolations <player> [reason]");
 					return true;
 				}
-				if (Bukkit.getPlayer(args[0]) != null) {
-					Player p = Bukkit.getPlayer(args[0]);
+				Player p = Bukkit.getPlayer(args[0]);
+				if (p != null && p.isOnline()) {
 					for (String num : Main.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
 						if (args.length != 1) {
 							if (Main.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
@@ -156,13 +148,16 @@ public class Commands implements CommandExecutor {
 												.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 								return true;
 							}
-						}else {
-							sender.sendMessage(ChatUtils.phReplace(Vars.check_vl, p.getName(), num,
-									ConfigManager.instance.getPlayers()
-											.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
+						} else {
+							sender.sendMessage(
+									ChatUtils.phReplace(Vars.check_vl, p.getName(), num, ConfigManager.instance
+											.getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
+							return true;
 						}
 					}
+					sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_type, args[0], args[1], 0)));
 					return true;
+
 				}
 				sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_player, args[0], args[1], 0)));
 			} else {
@@ -175,6 +170,74 @@ public class Commands implements CommandExecutor {
 				Main.instance.reloadConfig();
 				ConfigManager.instance.reloadPlayers();
 				sender.sendMessage(ChatColor.GREEN + "Maybe reloaded config.");
+			} else {
+				sender.sendMessage(Vars.no_perm);
+			}
+		}
+
+		if (cmd.getName().equalsIgnoreCase("svl") || cmd.getName().equalsIgnoreCase("setvl")
+				|| cmd.getName().equalsIgnoreCase("setviolations")) {
+			if (sender.hasPermission("uwu.setvl.use")) {
+				if (args.length <= 3) {
+					sender.sendMessage(
+							ChatColor.RED + "UwU >> Usage: /setviolations <player> <reason> <do-action> <amount>");
+					return true;
+				}
+
+				Player p = Bukkit.getPlayer(args[0]);
+				if (p != null && p.isOnline()) {
+					for (String num : Main.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
+						if (Main.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
+
+							// set vl
+							try {
+								ConfigManager.instance.getPlayers().set(
+										"Punishments." + num + ".Level." + p.getUniqueId(), Integer.parseInt(args[3]));
+							} catch (NumberFormatException e) {
+								sender.sendMessage(ChatColor.RED + "UwU >> " + args[3] + " is not a valid number.");
+								return true;
+							}
+
+							// set log
+
+							logToFile(dtf.format(now) + " | " + sender.getName() + " set vl for " + p.getName()
+									+ " for " + args[1] + " to " + args[3]);
+
+							// send message
+
+							sender.sendMessage(
+									ChatUtils.phReplace(Vars.ps_msg, p.getName(), args[1], (int) ConfigManager.instance
+											.getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
+							// Do command
+
+							if (args[2].startsWith("t") || args[2].startsWith("y")) {
+								if (Main.instance.getConfig()
+										.get("types." + num + "." + ConfigManager.instance.getPlayers()
+												.get("Punishments." + num + ".Level." + p.getUniqueId())) != null) {
+									Bukkit.dispatchCommand(Bukkit.getConsoleSender(), ChatUtils
+											.colorize(ChatUtils.phReplace(
+													(String) Main.instance
+															.getConfig()
+															.get("types." + num + "."
+																	+ ConfigManager.instance.getPlayers()
+																			.get("Punishments." + num + ".Level."
+																					+ p.getUniqueId())),
+													p.getName(), num, (int) ConfigManager.instance.getPlayers()
+															.get("Punishments." + num + ".Level." + p.getUniqueId()))));
+								}
+							}
+
+							ConfigManager.instance.savePlayers();
+							return true;
+						}
+					}
+					sender.sendMessage(ChatUtils.colorize(
+							ChatUtils.phReplace(Main.instance.getConfig().getString("no_type"), args[0], args[2], 0)));
+
+				} else {
+					sender.sendMessage(ChatUtils.colorize(ChatUtils
+							.phReplace(Main.instance.getConfig().getString("no_player"), args[0], args[2], 0)));
+				}
 			} else {
 				sender.sendMessage(Vars.no_perm);
 			}
@@ -214,4 +277,8 @@ public class Commands implements CommandExecutor {
 
 	}
 
+	public static void pP(Player p, String num, int o) {
+		ConfigManager.instance.getPlayers().set("Punishments." + num + ".Level." + p.getUniqueId(),
+				ConfigManager.instance.getPlayers().getInt(("Punishments." + num + ".Level." + p.getUniqueId())) + o);
+	}
 }

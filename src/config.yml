@@ -1,6 +1,7 @@
 bc_msg: '&cUwU >> %player% has been punished for %reason%.'
 punished_msg: '&cUwU >>&b %player% has been punished for %reason%. vl: %vl%'
 forgive_msg: '&cUwU >>&b %player% has been forgiven for %reason%. vl: %vl%'
+set_msg: '&cUwU >>&b %player% vl for %reason% has been set to: %vl%'
 no_type: '&c&lError>>&c There is no type for &b%reason%&c.'
 no_player: '&c&lError>>&c &b%player%&c is not online.'
 no_perm: '&4You do not have access to that command.'

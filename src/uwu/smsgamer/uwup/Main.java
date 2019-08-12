@@ -18,18 +18,15 @@ public class Main extends JavaPlugin implements Listener {
 		Commands cmds = new Commands();
 		loadConfig();
 		loadConfigManager();
-		getCommand("pu").setExecutor(cmds);
 		getCommand("punish").setExecutor(cmds);
 
-		getCommand("fo").setExecutor(cmds);
 		getCommand("forgive").setExecutor(cmds);
 		
-
-		getCommand("cv").setExecutor(cmds);
-		getCommand("checkvl").setExecutor(cmds);
 		getCommand("checkviolations").setExecutor(cmds);
 
 		getCommand("weload").setExecutor(cmds);
+		
+		getCommand("setviolations").setExecutor(cmds);
 	}
 
 	public void onDisable() {
