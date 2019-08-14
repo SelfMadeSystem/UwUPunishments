@@ -7,13 +7,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import uwu.smsgamer.uwup.commands.Commands;
 
-public class Main extends JavaPlugin implements Listener {
+public class UwUP extends JavaPlugin implements Listener {
 
 	private ConfigManager cfgm;
-
-	public static Main instance;
-
+	
+	public static UwUP instance;
+	
 	public void onEnable() {
+		
 		instance = this;
 		Commands cmds = new Commands();
 		loadConfig();
@@ -27,6 +28,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("weload").setExecutor(cmds);
 		
 		getCommand("setviolations").setExecutor(cmds);
+		
 	}
 
 	public void onDisable() {

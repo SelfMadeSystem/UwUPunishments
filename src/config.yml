@@ -3,7 +3,7 @@ punished_msg: '&cUwU >>&b %player% has been punished for %reason%. vl: %vl%'
 forgive_msg: '&cUwU >>&b %player% has been forgiven for %reason%. vl: %vl%'
 set_msg: '&cUwU >>&b %player% vl for %reason% has been set to: %vl%'
 no_type: '&c&lError>>&c There is no type for &b%reason%&c.'
-no_player: '&c&lError>>&c &b%player%&c is not online.'
+no_player: '&c&lError>>&c &b%player%&c does not exist or is exempt.'
 no_perm: '&4You do not have access to that command.'
 check_vl: '&cUwU >>&b %player% is at %vl% for %reason%.'
 types:
@@ -11,10 +11,14 @@ types:
       alias:
       - spam
       - caps
-      '1': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-      '2': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-      '3': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-      '4': emute %player%
+      punishments:
+         '1': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
+         '2': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
+         '3': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
+         '4': mute %player%
+      forgivements:
+         '0': unmute %player%
+         '3': unmute %player%
    hack:
       alias:
       - hack
@@ -26,11 +30,18 @@ types:
       - fly
       - speed
       - scaffold
-      '1': 'ekick %player% &cYou have been kicked for hacking. Warnings: %vl%'
-      '2': 'ekick %player% &cYou have been kicked for hacking. Warnings: %vl%'
-      '3': minecraft:ban %player% &cYou have been banned for hacking.
+      punishments:
+         '1': 'kick %player% &cYou have been kicked for hacking. Warnings: %vl%'
+         '2': 'kick %player% &cYou have been kicked for hacking. Warnings: %vl%'
+         '3': ban %player% &cYou have been banned for hacking.
+      forgivements:
+         '0': unban %player%
+         '2': unban %player%
    banavoid:
       alias:
       - banavoid
       - alts
-      '1': minecraft:ban-ip %player% &cYou have been banned for ban avoiding.
+      punishments:
+         '1': minecraft:ban-ip %player% &cYou have been banned for ban avoiding.
+      forgivements:
+         '0': minecraft:pardon-ip %player%

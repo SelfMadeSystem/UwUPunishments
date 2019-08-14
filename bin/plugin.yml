@@ -1,7 +1,7 @@
 name: UwUPunishments
 author: Sms_Gamer
 version: 1.3
-main: uwu.smsgamer.uwup.Main
+main: uwu.smsgamer.uwup.UwUP
 description: PUwUnish ppl.
 commands:
    punish:
@@ -44,4 +44,7 @@ permissions:
       default: op
    uwu.setvl.use:
       description: Allows to set violations of someone.
+      default: op
+   uwu.pu.exempt:
+      description: Prevents other people from affecting you.
       default: op

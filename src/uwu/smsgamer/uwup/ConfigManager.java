@@ -12,7 +12,7 @@ public class ConfigManager {
 
 	public static ConfigManager instance;
 
-	private Main plugin = Main.getPlugin(Main.class);
+	private UwUP plugin = UwUP.getPlugin(UwUP.class);
 	// Files & File Configs Here
 	public FileConfiguration playerscfg;
 	public File playersfile;
