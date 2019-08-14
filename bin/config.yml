@@ -12,13 +12,20 @@ types:
       - spam
       - caps
       punishments:
-         '1': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-         '2': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-         '3': 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-         '4': mute %player%
+         '1': 
+         - 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
+         '2': 
+         - 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
+         '3': 
+         - 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
+         '4': 
+         - 'tellraw %player% {"text":"&cYou have been muted for spam. Warnings: %vl%"}'
+         - mute %player%
       forgivements:
-         '0': unmute %player%
-         '3': unmute %player%
+         '0': 
+         - unmute %player%
+         '3': 
+         - unmute %player%
    hack:
       alias:
       - hack
@@ -31,17 +38,24 @@ types:
       - speed
       - scaffold
       punishments:
-         '1': 'kick %player% &cYou have been kicked for hacking. Warnings: %vl%'
-         '2': 'kick %player% &cYou have been kicked for hacking. Warnings: %vl%'
-         '3': ban %player% &cYou have been banned for hacking.
+         '1':
+         - 'kick %player% &cYou have been kicked for hacking. Warnings: %vl%'
+         '2':
+         - 'kick %player% &cYou have been kicked for hacking. Warnings: %vl%'
+         '3':
+         - ban %player% &cYou have been banned for hacking.
       forgivements:
-         '0': unban %player%
-         '2': unban %player%
+         '0':
+         - unban %player%
+         '2':
+         - unban %player%
    banavoid:
       alias:
       - banavoid
       - alts
       punishments:
-         '1': minecraft:ban-ip %player% &cYou have been banned for ban avoiding.
+         '1':
+         - minecraft:ban-ip %player% &cYou have been banned for ban avoiding.
       forgivements:
-         '0': minecraft:pardon-ip %player%
+         '0':
+         - minecraft:pardon-ip %player%

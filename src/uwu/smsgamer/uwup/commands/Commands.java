@@ -33,9 +33,9 @@ public class Commands implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "UwU >> Usage: /punish <player> <broadcast> <reason>");
 					return true;
 				}
-				
+
 				Player p = Bukkit.getPlayer(args[0]);
-				
+
 				if (p != null && !p.hasPermission("uwu.pu.exempt")) {
 					for (String num : UwUP.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
 						if (UwUP.instance.getConfig().getStringList("types." + num + ".alias").contains(args[2])) {
@@ -63,19 +63,17 @@ public class Commands implements CommandExecutor {
 											.getPlayers().get("Punishments." + num + ".Level." + p.getUniqueId())));
 
 							// do command
-
-							if (UwUP.instance.getConfig().get("types." + num + ".punishments." + ConfigManager.instance
-									.getPlayers().get("Punishments." + num + ".Level." + p.getUniqueId())) != null) {
+							for (int i = 0; i < UwUP.instance.getConfig()
+									.getStringList("types." + num + ".punishments."
+											+ ConfigManager.instance.getPlayers()
+													.get("Punishments." + num + ".Level." + p.getUniqueId()))
+									.toArray().length; i++) {
 								Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-										ChatUtils
-												.colorize(ChatUtils.phReplace(
-														(String) UwUP.instance.getConfig()
-																.get("types." + num + ".punishments."
-																		+ ConfigManager.instance.getPlayers()
-																				.get("Punishments." + num + ".Level."
-																						+ p.getUniqueId())),
-														p.getName(), num, (int) ConfigManager.instance.getPlayers().get(
-																"Punishments." + num + ".Level." + p.getUniqueId()))));
+										UwUP.instance.getConfig()
+												.getStringList("types." + num + ".punishments."
+														+ ConfigManager.instance.getPlayers().get(
+																"Punishments." + num + ".Level." + p.getUniqueId()))
+												.toArray()[i] + "");
 							}
 
 							ConfigManager.instance.savePlayers();
@@ -108,7 +106,7 @@ public class Commands implements CommandExecutor {
 							if (ConfigManager.instance.getPlayers()
 									.get("Punishments." + num + ".Level." + p.getUniqueId()) != null) {
 								if (ConfigManager.instance.getPlayers()
-										.getInt("Punishments." + num + ".Level." + p.getUniqueId()) != 0) {
+										.getInt("Punishments." + num + ".Level." + p.getUniqueId()) > 0) {
 									pP(p, num, -1);
 								}
 							}
@@ -118,21 +116,20 @@ public class Commands implements CommandExecutor {
 							sender.sendMessage(
 									ChatUtils.phReplace(Vars.forgive, p.getName(), args[1], ConfigManager.instance
 											.getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
-							
+
 							// Do command
-							
-							if (UwUP.instance.getConfig().get("types." + num + ".forgivements." + ConfigManager.instance
-									.getPlayers().get("Punishments." + num + ".Level." + p.getUniqueId())) != null) {
+
+							for (int i = 0; i < UwUP.instance.getConfig()
+									.getStringList("types." + num + ".forgivements."
+											+ ConfigManager.instance.getPlayers()
+													.get("Punishments." + num + ".Level." + p.getUniqueId()))
+									.toArray().length; i++) {
 								Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-										ChatUtils
-												.colorize(ChatUtils.phReplace(
-														(String) UwUP.instance.getConfig()
-																.get("types." + num + ".forgivements."
-																		+ ConfigManager.instance.getPlayers()
-																				.get("Punishments." + num + ".Level."
-																						+ p.getUniqueId())),
-														p.getName(), num, (int) ConfigManager.instance.getPlayers().get(
-																"Punishments." + num + ".Level." + p.getUniqueId()))));
+										UwUP.instance.getConfig()
+												.getStringList("types." + num + ".forgivements."
+														+ ConfigManager.instance.getPlayers().get(
+																"Punishments." + num + ".Level." + p.getUniqueId()))
+												.toArray()[i] + "");
 							}
 
 							ConfigManager.instance.savePlayers();
@@ -226,34 +223,32 @@ public class Commands implements CommandExecutor {
 							// Do command
 
 							if (args[2].startsWith("p")) {
-								if (UwUP.instance.getConfig()
-										.get("types." + num + ".punishments." + ConfigManager.instance.getPlayers()
-												.get("Punishments." + num + ".Level." + p.getUniqueId())) != null) {
+								for (int i = 0; i < UwUP.instance.getConfig()
+										.getStringList("types." + num + ".punishments."
+												+ ConfigManager.instance.getPlayers()
+														.get("Punishments." + num + ".Level." + p.getUniqueId()))
+										.toArray().length; i++) {
 									Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-											ChatUtils.colorize(ChatUtils.phReplace(
-													(String) UwUP.instance.getConfig()
-															.get("types." + num + ".punishments."
-																	+ ConfigManager.instance.getPlayers()
-																			.get("Punishments." + num + ".Level."
-																					+ p.getUniqueId())),
-													p.getName(), num, (int) ConfigManager.instance.getPlayers()
-															.get("Punishments." + num + ".Level." + p.getUniqueId()))));
+											UwUP.instance.getConfig()
+													.getStringList("types." + num + ".punishments."
+															+ ConfigManager.instance.getPlayers().get(
+																	"Punishments." + num + ".Level." + p.getUniqueId()))
+													.toArray()[i] + "");
 								}
 							}
 
 							if (args[2].startsWith("f")) {
-								if (UwUP.instance.getConfig()
-										.get("types." + num + ".forgivements." + ConfigManager.instance.getPlayers()
-												.get("Punishments." + num + ".Level." + p.getUniqueId())) != null) {
+								for (int i = 0; i < UwUP.instance.getConfig()
+										.getStringList("types." + num + ".forgivements."
+												+ ConfigManager.instance.getPlayers()
+														.get("Punishments." + num + ".Level." + p.getUniqueId()))
+										.toArray().length; i++) {
 									Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-											ChatUtils.colorize(ChatUtils.phReplace(
-													(String) UwUP.instance.getConfig()
-															.get("types." + num + ".forgivements."
-																	+ ConfigManager.instance.getPlayers()
-																			.get("Punishments." + num + ".Level."
-																					+ p.getUniqueId())),
-													p.getName(), num, (int) ConfigManager.instance.getPlayers()
-															.get("Punishments." + num + ".Level." + p.getUniqueId()))));
+											UwUP.instance.getConfig()
+													.getStringList("types." + num + ".forgivements."
+															+ ConfigManager.instance.getPlayers().get(
+																	"Punishments." + num + ".Level." + p.getUniqueId()))
+													.toArray()[i] + "");
 								}
 							}
 
