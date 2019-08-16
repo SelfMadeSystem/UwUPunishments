@@ -1,30 +1,61 @@
+# Message done when broadcasting a punishment.
 bc_msg: '&cUwU >> %player% has been punished for %reason%.'
+# Message done when punishing someone.
 punished_msg: '&cUwU >>&b %player% has been punished for %reason%. vl: %vl%'
+# Message done when forgiving someone.
 forgive_msg: '&cUwU >>&b %player% has been forgiven for %reason%. vl: %vl%'
+# Message done when setting the vl of someone.
 set_msg: '&cUwU >>&b %player% vl for %reason% has been set to: %vl%'
+# Message done when the type specified does not exist.
 no_type: '&c&lError>>&c There is no type for &b%reason%&c.'
+# Message done when the player is has the exempt permission or does not exist.
 no_player: '&c&lError>>&c &b%player%&c does not exist or is exempt.'
+# Message done when the player using the command does not have access to it.
 no_perm: '&4You do not have access to that command.'
+# Message done when checking the vl of someone
 check_vl: '&cUwU >>&b %player% is at %vl% for %reason%.'
+
+# Logs to a file.
+log:
+   punish: '%date% | %sender% has punished %player% for %reason%. vl: %vl%'
+   forgive: '%date% | %sender% has forgiven %player% for %reason%. vl: %vl%'
+   setvl: '%date% | %sender% has set the vl of %player% for %reason%. vl: %vl%'
+
+#
+# types.(name).alias is where you specify the
+# aliases for that type.
+#
+#
+# types.(name).punishments is where you
+# specify the commands when someone is being
+# punished and is at X amount of
+# punishments for that type.
+#
+#
+# types.(name).forgivements is where you
+# specify the commands when someone is being
+# forgiven and is at X amount of
+#
+
 types:
    spam:
       alias:
       - spam
       - caps
       punishments:
-         '1': 
+         '1':
          - 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-         '2': 
+         '2':
          - 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-         '3': 
+         '3':
          - 'tellraw %player% {"text":"&cYou have been warned for spam. Warnings: %vl%"}'
-         '4': 
+         '4':
          - 'tellraw %player% {"text":"&cYou have been muted for spam. Warnings: %vl%"}'
          - mute %player%
       forgivements:
-         '0': 
+         '0':
          - unmute %player%
-         '3': 
+         '3':
          - unmute %player%
    hack:
       alias:

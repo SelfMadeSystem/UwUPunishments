@@ -52,9 +52,8 @@ public class Commands implements CommandExecutor {
 							pP(p, num, 1);
 
 							// set log
-
-							logToFile(dtf.format(now) + " | " + sender.getName() + " punished " + p.getName() + " for "
-									+ args[2] + ".");
+							logToFile(ChatUtils.logReplace(UwUP.instance.getConfig().getString("log.punish"), dtf.format(now), sender.getName(), p.getName(), ConfigManager.instance.getPlayers()
+									.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 
 							// send message
 
@@ -69,11 +68,12 @@ public class Commands implements CommandExecutor {
 													.get("Punishments." + num + ".Level." + p.getUniqueId()))
 									.toArray().length; i++) {
 								Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-										UwUP.instance.getConfig()
+										ChatUtils.phReplace(ChatUtils.colorize(UwUP.instance.getConfig()
 												.getStringList("types." + num + ".punishments."
 														+ ConfigManager.instance.getPlayers().get(
 																"Punishments." + num + ".Level." + p.getUniqueId()))
-												.toArray()[i] + "");
+												.toArray()[i] + ""), p.getName(), args[1], ConfigManager.instance.getPlayers()
+												.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 							}
 
 							ConfigManager.instance.savePlayers();
@@ -116,7 +116,11 @@ public class Commands implements CommandExecutor {
 							sender.sendMessage(
 									ChatUtils.phReplace(Vars.forgive, p.getName(), args[1], ConfigManager.instance
 											.getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
-
+							
+							// set log
+							logToFile(ChatUtils.logReplace(UwUP.instance.getConfig().getString("log.forgive"), dtf.format(now), sender.getName(), p.getName(), ConfigManager.instance.getPlayers()
+									.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
+							
 							// Do command
 
 							for (int i = 0; i < UwUP.instance.getConfig()
@@ -125,11 +129,12 @@ public class Commands implements CommandExecutor {
 													.get("Punishments." + num + ".Level." + p.getUniqueId()))
 									.toArray().length; i++) {
 								Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-										UwUP.instance.getConfig()
+										ChatUtils.phReplace(ChatUtils.colorize(UwUP.instance.getConfig()
 												.getStringList("types." + num + ".forgivements."
 														+ ConfigManager.instance.getPlayers().get(
 																"Punishments." + num + ".Level." + p.getUniqueId()))
-												.toArray()[i] + "");
+												.toArray()[i] + ""), p.getName(), args[1], ConfigManager.instance.getPlayers()
+												.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 							}
 
 							ConfigManager.instance.savePlayers();
@@ -177,16 +182,6 @@ public class Commands implements CommandExecutor {
 			}
 		}
 
-		if (cmd.getName().equalsIgnoreCase("weload")) {
-			if (sender.hasPermission("uwu.pu.reload.use")) {
-				UwUP.instance.reloadConfig();
-				ConfigManager.instance.reloadPlayers();
-				sender.sendMessage(ChatColor.GREEN + "Maybe reloaded config.");
-			} else {
-				sender.sendMessage(Vars.no_perm);
-			}
-		}
-
 		if (cmd.getName().equalsIgnoreCase("svl") || cmd.getName().equalsIgnoreCase("setvl")
 				|| cmd.getName().equalsIgnoreCase("setviolations")) {
 			if (sender.hasPermission("uwu.setvl.use")) {
@@ -211,9 +206,8 @@ public class Commands implements CommandExecutor {
 							}
 
 							// set log
-
-							logToFile(dtf.format(now) + " | " + sender.getName() + " set vl for " + p.getName()
-									+ " for " + args[1] + " to " + args[3]);
+							logToFile(ChatUtils.logReplace(UwUP.instance.getConfig().getString("log.setvl"), dtf.format(now), sender.getName(), p.getName(), ConfigManager.instance.getPlayers()
+									.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 
 							// send message
 
@@ -229,11 +223,12 @@ public class Commands implements CommandExecutor {
 														.get("Punishments." + num + ".Level." + p.getUniqueId()))
 										.toArray().length; i++) {
 									Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-											UwUP.instance.getConfig()
+											ChatUtils.phReplace(ChatUtils.colorize(UwUP.instance.getConfig()
 													.getStringList("types." + num + ".punishments."
 															+ ConfigManager.instance.getPlayers().get(
 																	"Punishments." + num + ".Level." + p.getUniqueId()))
-													.toArray()[i] + "");
+													.toArray()[i] + ""), p.getName(), args[1], ConfigManager.instance.getPlayers()
+													.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 								}
 							}
 
@@ -244,11 +239,12 @@ public class Commands implements CommandExecutor {
 														.get("Punishments." + num + ".Level." + p.getUniqueId()))
 										.toArray().length; i++) {
 									Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-											UwUP.instance.getConfig()
+											ChatUtils.phReplace(ChatUtils.colorize(UwUP.instance.getConfig()
 													.getStringList("types." + num + ".forgivements."
 															+ ConfigManager.instance.getPlayers().get(
 																	"Punishments." + num + ".Level." + p.getUniqueId()))
-													.toArray()[i] + "");
+													.toArray()[i] + ""), p.getName(), args[1], ConfigManager.instance.getPlayers()
+													.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 								}
 							}
 

@@ -16,4 +16,13 @@ public class ChatUtils {
 		fmsg = fmsg.replaceAll("%vl%", vl + "");
 		return fmsg;
 	}
+
+	public static String logReplace(String msg, String time, String sender, String player, int vl) {
+		String fmsg = msg;
+		fmsg = fmsg.replaceAll("%date%", time);
+		fmsg = fmsg.replaceAll("%sender%", sender);
+		fmsg = fmsg.replaceAll("%player%", player);
+		fmsg = fmsg.replaceAll("%vl%", vl + "");
+		return fmsg;
+	}
 }

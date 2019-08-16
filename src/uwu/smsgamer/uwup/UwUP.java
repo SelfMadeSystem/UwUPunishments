@@ -10,11 +10,11 @@ import uwu.smsgamer.uwup.commands.Commands;
 public class UwUP extends JavaPlugin implements Listener {
 
 	private ConfigManager cfgm;
-	
+
 	public static UwUP instance;
-	
+
 	public void onEnable() {
-		
+
 		instance = this;
 		Commands cmds = new Commands();
 		loadConfig();
@@ -22,13 +22,13 @@ public class UwUP extends JavaPlugin implements Listener {
 		getCommand("punish").setExecutor(cmds);
 
 		getCommand("forgive").setExecutor(cmds);
-		
+
 		getCommand("checkviolations").setExecutor(cmds);
 
 		getCommand("weload").setExecutor(cmds);
-		
+
 		getCommand("setviolations").setExecutor(cmds);
-		
+
 	}
 
 	public void onDisable() {
@@ -44,8 +44,7 @@ public class UwUP extends JavaPlugin implements Listener {
 	public void loadConfig() {
 		File configFile = new File(this.getDataFolder(), "config.yml");
 		if (!configFile.exists()) {
-			getConfig().options().copyDefaults(true);
+			saveDefaultConfig();
 		}
-		saveConfig();
 	}
 }
