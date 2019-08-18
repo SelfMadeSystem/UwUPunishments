@@ -2,6 +2,8 @@
 UwUPunishments for MatrixMC
 Created with eclipse
 
+Thanks to UntouchedOdin0 (https://www.spigotmc.org/members/devbukkit.28513/) for making the RADME.md 
+
 A new, simple, and tiny punishment plugin for admins.
 
 I coded this plugin with the 1.12.2 spigot api. I tested it with 1.8.8 and 1.12.2 spigot, so I don't know if it'll work on other versions. It's up to you if you want to find out.
