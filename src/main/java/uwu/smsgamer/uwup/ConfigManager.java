@@ -8,6 +8,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+/**
+ * Manages configuration file: players.yml
+ */
 public class ConfigManager {
 
 	public static ConfigManager instance;
@@ -18,6 +21,9 @@ public class ConfigManager {
 	public File playersfile;
 	// --------------------------
 
+	/**
+	 * Sets up the configuration files.
+	 */
 	public void setup() {
 		instance = this;
 		if (!plugin.getDataFolder().exists()) {
@@ -40,11 +46,18 @@ public class ConfigManager {
 		playerscfg = YamlConfiguration.loadConfiguration(playersfile);
 	}
 
+	/**
+	 * Used to get the configuration file: players.yml
+	 * @return Will returns the FileConfiguration of players.yml
+	 */
 	public FileConfiguration getPlayers() {
 		instance = this;
 		return playerscfg;
 	}
 
+	/**
+	 * Used to save the configuration file: players.yml
+	 */
 	public void savePlayers() {
 		try {
 			playerscfg.save(playersfile);
@@ -55,6 +68,9 @@ public class ConfigManager {
 		}
 	}
 
+	/**
+	 * Used to reload the configuration file: players.yml
+	 */
 	public void reloadPlayers() {
 		playerscfg = YamlConfiguration.loadConfiguration(playersfile);
 		Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.BLUE + "The players.yml file has been reload");

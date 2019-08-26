@@ -3,6 +3,9 @@ package uwu.smsgamer.uwup.vars;
 import uwu.smsgamer.uwup.UwUP;
 import uwu.smsgamer.uwup.utils.ChatUtils;
 
+/**
+ * Stores values (vars, variables) that will be taken from a config file and used in this program.
+ */
 public class Vars {
 
 	public static String ps_msg = ChatUtils.colorize((String) UwUP.instance.getConfig().get("punished_msg"));

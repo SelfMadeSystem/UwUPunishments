@@ -7,12 +7,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import uwu.smsgamer.uwup.commands.Commands;
 
+/**
+ * Main class for this plugin.
+ */
 public class UwUP extends JavaPlugin implements Listener {
 
 	private ConfigManager cfgm;
 
 	public static UwUP instance;
 
+	/**
+	 * Used to do stuff when the plugin gets enabled (after reload, on server start)
+	 */
 	public void onEnable() {
 
 		instance = this;
@@ -31,9 +37,15 @@ public class UwUP extends JavaPlugin implements Listener {
 
 	}
 
+	/**
+	 * Used to do stuff when the plugin gets disabled (before reload, on server stop)
+	 */
 	public void onDisable() {
 	}
 
+	/**
+	 * Used to load configuration file: players.yml
+	 */
 	public void loadConfigManager() {
 		cfgm = new ConfigManager();
 		cfgm.setup();
@@ -41,6 +53,9 @@ public class UwUP extends JavaPlugin implements Listener {
 		cfgm.reloadPlayers();
 	}
 
+	/**
+	 * Used to load configuration file: config.yml
+	 */
 	public void loadConfig() {
 		File configFile = new File(this.getDataFolder(), "config.yml");
 		if (!configFile.exists()) {
