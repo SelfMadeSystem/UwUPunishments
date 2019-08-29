@@ -1,9 +1,5 @@
 package uwu.smsgamer.uwup.commands;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,6 +13,7 @@ import net.md_5.bungee.api.ChatColor;
 import uwu.smsgamer.uwup.ConfigManager;
 import uwu.smsgamer.uwup.UwUP;
 import uwu.smsgamer.uwup.utils.ChatUtils;
+import uwu.smsgamer.uwup.utils.LogUtils;
 import uwu.smsgamer.uwup.vars.Vars;
 
 /**
@@ -36,7 +33,6 @@ public class Commands implements CommandExecutor {
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
-
 		if (cmd.getName().equalsIgnoreCase("pu") || cmd.getName().equalsIgnoreCase("punish")) {
 			if (sender.hasPermission("uwu.punish.use")) {
 				if (args.length <= 2) {
@@ -59,10 +55,10 @@ public class Commands implements CommandExecutor {
 							}
 							// set vl
 
-							pP(p, num, 1);
+							ChatUtils.pP(p, num, 1);
 
 							// set log
-							logToFile(ChatUtils.logReplace(UwUP.instance.getConfig().getString("log.punish"),
+							LogUtils.logToFile(ChatUtils.logReplace(UwUP.instance.getConfig().getString("log.punish"),
 									dtf.format(now), sender.getName(), p.getName(), ConfigManager.instance.getPlayers()
 											.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 
@@ -121,7 +117,7 @@ public class Commands implements CommandExecutor {
 									.get("Punishments." + num + ".Level." + p.getUniqueId()) != null) {
 								if (ConfigManager.instance.getPlayers()
 										.getInt("Punishments." + num + ".Level." + p.getUniqueId()) > 0) {
-									pP(p, num, -1);
+									ChatUtils.pP(p, num, -1);
 								}
 							}
 
@@ -132,7 +128,7 @@ public class Commands implements CommandExecutor {
 											.getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 
 							// set log
-							logToFile(ChatUtils.logReplace(UwUP.instance.getConfig().getString("log.forgive"),
+							LogUtils.logToFile(ChatUtils.logReplace(UwUP.instance.getConfig().getString("log.forgive"),
 									dtf.format(now), sender.getName(), p.getName(), ConfigManager.instance.getPlayers()
 											.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 
@@ -224,14 +220,14 @@ public class Commands implements CommandExecutor {
 							}
 
 							// set log
-							logToFile(ChatUtils.logReplace(UwUP.instance.getConfig().getString("log.setvl"),
+							LogUtils.logToFile(ChatUtils.logReplace(UwUP.instance.getConfig().getString("log.setvl"),
 									dtf.format(now), sender.getName(), p.getName(), ConfigManager.instance.getPlayers()
 											.getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 
 							// send message
 
 							sender.sendMessage(
-									ChatUtils.phReplace(Vars.set_vl, p.getName(), args[1], (int) ConfigManager.instance
+									ChatUtils.phReplace(Vars.set_vl, p.getName(), args[1], ConfigManager.instance
 											.getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
 							// Do command
 
@@ -291,40 +287,7 @@ public class Commands implements CommandExecutor {
 		return true;
 	}
 
-	public void logToFile(String message) {
 
-		try {
-			File dataFolder = UwUP.instance.getDataFolder();
 
-			if (!dataFolder.exists()) {
-				dataFolder.mkdir();
-			}
 
-			File saveTo = new File(UwUP.instance.getDataFolder(), "Punishment.log");
-			if (!saveTo.exists()) {
-				saveTo.createNewFile();
-			}
-
-			FileWriter fw = new FileWriter(saveTo, true);
-
-			PrintWriter pw = new PrintWriter(fw);
-
-			pw.println(message);
-
-			pw.flush();
-
-			pw.close();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-		}
-
-	}
-
-	public static void pP(Player p, String num, int o) {
-		ConfigManager.instance.getPlayers().set("Punishments." + num + ".Level." + p.getUniqueId(),
-				ConfigManager.instance.getPlayers().getInt(("Punishments." + num + ".Level." + p.getUniqueId())) + o);
-	}
 }

@@ -1,11 +1,15 @@
 package uwu.smsgamer.uwup.utils;
 
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import uwu.smsgamer.uwup.ConfigManager;
+
 /**
  * Some utilities that will be used a lot throughout my program.
  */
 public class ChatUtils {
 	/**
-	 * Replace '&amp;' with '§' and '&amp;&amp;' with '&amp;' for a message.
+	 * Replace '&amp;' with the section symbol and '&amp;&amp;' with '&amp;' for a message.
 	 *
 	 * @param msg The message that will be "colorized".
 	 * @return Will return a string that has been "colorized".
@@ -13,7 +17,7 @@ public class ChatUtils {
 	public static String colorize(String msg) {
 		String fmsg = msg;
 		fmsg = fmsg.replaceAll("&&", "_=-fa");
-		fmsg = fmsg.replaceAll("&", "§");
+		fmsg = fmsg.replaceAll("&", String.valueOf(ChatColor.COLOR_CHAR));
 		fmsg = fmsg.replaceAll("_=-fa", "&");
 		return fmsg;
 	}
@@ -52,5 +56,15 @@ public class ChatUtils {
 		fmsg = fmsg.replaceAll("%player%", player);
 		fmsg = fmsg.replaceAll("%vl%", vl + "");
 		return fmsg;
+	}
+
+	/**
+	 * @param p Player you want to use.
+	 * @param num Punishment type you want to use.
+	 * @param o Set punishments +/-
+	 */
+	public static void pP(Player p, String num, int o) {
+		ConfigManager.instance.getPlayers().set("Punishments." + num + ".Level." + p.getUniqueId(),
+				ConfigManager.instance.getPlayers().getInt(("Punishments." + num + ".Level." + p.getUniqueId())) + o);
 	}
 }

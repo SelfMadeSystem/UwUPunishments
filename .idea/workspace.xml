@@ -8,6 +8,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -19,7 +26,15 @@
   </component>
   <component name="ProjectId" id="1PydrOsQziHd1UGHyP2MZ6gsiJm" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../doc/UwUPunishments" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/uwu/smsgamer/uwup/vars" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\appdata\projects\UwUPunishments\src\main\java\uwu\smsgamer\uwup\vars" />
+      <recent name="D:\appdata\projects\UwUPunishments\src\main\java\uwu\smsgamer\uwup\utils" />
+      <recent name="D:\appdata\projects\UwUPunishments\src\main\java\uwu\smsgamer\uwup\commands" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
