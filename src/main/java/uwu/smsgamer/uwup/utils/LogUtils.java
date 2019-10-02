@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Some log utilities that will be used a lot throughout my program.
+ */
 public class LogUtils {
     /**
      * Logs a message to Punishment.log file.
