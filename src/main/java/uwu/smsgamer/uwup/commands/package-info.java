@@ -1,4 +1,4 @@
 /**
- * Directory to store Commands.java
+ * Directory that contains the Command Manager.
  */
-package uwu.smsgamer.uwup.commands;
+package uwu.smsgamer.uwup.Commands;

@@ -1,6 +1,6 @@
-package uwu.smsgamer.uwup.utils;
+package uwu.smsgamer.uwup.Utils;
 
-import uwu.smsgamer.uwup.UwUP;
+import uwu.smsgamer.uwup.UwUPunishments;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,13 +16,13 @@ public class LogUtils {
     public static void logToFile(String message) {
 
         try {
-            File dataFolder = UwUP.instance.getDataFolder();
+            File dataFolder = UwUPunishments.instance.getDataFolder();
 
             if (!dataFolder.exists()) {
                 dataFolder.mkdir();
             }
 
-            File saveTo = new File(UwUP.instance.getDataFolder(), "Punishment.log");
+            File saveTo = new File(UwUPunishments.instance.getDataFolder(), "Punishment.log");
             if (!saveTo.exists()) {
                 saveTo.createNewFile();
             }

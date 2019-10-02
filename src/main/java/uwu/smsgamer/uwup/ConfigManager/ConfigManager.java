@@ -1,12 +1,13 @@
-package uwu.smsgamer.uwup;
-
-import java.io.File;
-import java.io.IOException;
+package uwu.smsgamer.uwup.ConfigManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import uwu.smsgamer.uwup.UwUPunishments;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Manages configuration file: players.yml
@@ -15,7 +16,7 @@ public class ConfigManager {
 
 	public static ConfigManager instance;
 
-	private UwUP plugin = UwUP.getPlugin(UwUP.class);
+	private UwUPunishments plugin = UwUPunishments.getPlugin(UwUPunishments.class);
 	// Files & File Configs Here
 	public FileConfiguration playerscfg;
 	public File playersfile;

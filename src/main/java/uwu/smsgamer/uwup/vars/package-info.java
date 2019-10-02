@@ -1,4 +1,4 @@
 /**
- * Directory to store Vars.java
+ * Directory that contains Vars.
  */
-package uwu.smsgamer.uwup.vars;
+package uwu.smsgamer.uwup.Vars;

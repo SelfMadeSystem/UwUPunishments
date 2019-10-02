@@ -1,4 +1,4 @@
 /**
- * Directory to store ChatUtils.java
+ * Directory that contains Utils.
  */
-package uwu.smsgamer.uwup.utils;
+package uwu.smsgamer.uwup.Utils;

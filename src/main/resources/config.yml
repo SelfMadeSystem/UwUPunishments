@@ -1,9 +1,25 @@
+# Do not change.
+config-version: 2.0
+
+# NOT CURRENTLY IN USE!!!
+MySql:
+  # Use MySQL instead of the players.yml?
+  enabled: false
+  host: 'localhost'
+  port: 3306
+  database: 'database'
+  username: 'username'
+  password: 'password'
+  table: 'UwUPunishments'
+
 # Message done when broadcasting a punishment.
 bc_msg: '&cUwU >> %player% has been punished for %reason%.'
 # Message done when punishing someone.
 punished_msg: '&cUwU >>&b %player% has been punished for %reason%. vl: %vl%'
 # Message done when forgiving someone.
 forgive_msg: '&cUwU >>&b %player% has been forgiven for %reason%. vl: %vl%'
+# Message done when forgiven player doesn't exist.
+forgive_not_found: '&cUwU >>&b %player% has not been punished. Can''t forgive.'
 # Message done when setting the vl of someone.
 set_msg: '&cUwU >>&b %player% vl for %reason% has been set to: %vl%'
 # Message done when the type specified does not exist.

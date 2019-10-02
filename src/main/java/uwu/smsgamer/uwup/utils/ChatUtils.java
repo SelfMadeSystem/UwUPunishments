@@ -1,8 +1,8 @@
-package uwu.smsgamer.uwup.utils;
+package uwu.smsgamer.uwup.Utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import uwu.smsgamer.uwup.ConfigManager;
+import uwu.smsgamer.uwup.ConfigManager.ConfigManager;
 
 /**
  * Some utilities that will be used a lot throughout my program.
@@ -49,10 +49,11 @@ public class ChatUtils {
 	 * @param vl Integer to replace %vl%
 	 * @return Will return a string with certain placeholders replaced.
 	 */
-	public static String logReplace(String msg, String time, String sender, String player, int vl) {
+	public static String logReplace(String msg, String time, String sender, String reason, String player, int vl) {
 		String fmsg = msg;
 		fmsg = fmsg.replaceAll("%date%", time);
 		fmsg = fmsg.replaceAll("%sender%", sender);
+		fmsg = fmsg.replaceAll("%reason%", reason);
 		fmsg = fmsg.replaceAll("%player%", player);
 		fmsg = fmsg.replaceAll("%vl%", vl + "");
 		return fmsg;
@@ -61,10 +62,15 @@ public class ChatUtils {
 	/**
 	 * @param p Player you want to use.
 	 * @param num Punishment type you want to use.
-	 * @param o Set punishments +/-
+	 * @param set If true, sets the vl to "o".
+	 * @param o Set punishments
 	 */
-	public static void pP(Player p, String num, int o) {
-		ConfigManager.instance.getPlayers().set("Punishments." + num + ".Level." + p.getUniqueId(),
-				ConfigManager.instance.getPlayers().getInt(("Punishments." + num + ".Level." + p.getUniqueId())) + o);
+	public static void pP(Player p, String num, boolean set, int o) {
+		if(set){
+			ConfigManager.instance.getPlayers().set("Punishments." + num + ".Level." + p.getUniqueId(), o);
+		}else{
+			ConfigManager.instance.getPlayers().set("Punishments." + num + ".Level." + p.getUniqueId(),
+					ConfigManager.instance.getPlayers().getInt(("Punishments." + num + ".Level." + p.getUniqueId())) + o);
+		}
 	}
 }
