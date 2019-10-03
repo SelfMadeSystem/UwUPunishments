@@ -36,8 +36,6 @@ public class ConfigManager {
 		if (!playersfile.exists()) {
 			try {
 				playersfile.createNewFile();
-				Bukkit.getServer().getConsoleSender()
-						.sendMessage(ChatColor.GREEN + "The players.yml file has been created");
 			} catch (IOException e) {
 				Bukkit.getServer().getConsoleSender()
 						.sendMessage(ChatColor.RED + "Could not create the players.yml file");
@@ -62,7 +60,6 @@ public class ConfigManager {
 	public void savePlayers() {
 		try {
 			playerscfg.save(playersfile);
-			Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "The players.yml file has been saved");
 
 		} catch (IOException e) {
 			Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Could not save the players.yml file");
@@ -74,7 +71,6 @@ public class ConfigManager {
 	 */
 	public void reloadPlayers() {
 		playerscfg = YamlConfiguration.loadConfiguration(playersfile);
-		Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.BLUE + "The players.yml file has been reload");
 
 	}
 
