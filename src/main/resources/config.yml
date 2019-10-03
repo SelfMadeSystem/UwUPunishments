@@ -3,7 +3,7 @@ config-version: 2.0
 
 # NOT CURRENTLY IN USE!!!
 MySql:
-  # Use MySQL instead of the players.yml?
+  # Use MySQL to update players.yml?
   enabled: false
   host: 'localhost'
   port: 3306
