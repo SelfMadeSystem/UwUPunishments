@@ -10,6 +10,8 @@ import uwu.smsgamer.uwup.Utils.ChatUtils;
 import uwu.smsgamer.uwup.UwUPunishments;
 import uwu.smsgamer.uwup.Vars.Vars;
 
+import java.util.Objects;
+
 /**
  * CheckVl command.
  */
@@ -30,21 +32,24 @@ public class CheckVlCommand {
         Player p = Bukkit.getPlayer(args[0]);
         if (p != null && p.isOnline()) {
             for (String num : UwUPunishments.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
-                if (args.length != 1) {
+                if (args.length > 1) {
                     if (UwUPunishments.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
                         sender.sendMessage(ChatUtils.phReplace(Vars.check_vl, p.getName(), num,
-                                ConfigManager.instance.getPlayers()
-                                        .getInt("Punishments." + num + ".Level." + p.getUniqueId())));
+                                ConfigManager.instance.getPlayers().getInt("Punishments." + num + ".Level." + p.getName())));
                         return;
                     }
                 } else {
                     sender.sendMessage(
-                            ChatUtils.phReplace(Vars.check_vl, p.getName(), num, ConfigManager.instance
-                                    .getPlayers().getInt("Punishments." + num + ".Level." + p.getUniqueId())));
+                            ChatUtils.phReplace(Vars.check_vl, p.getName(), num,
+                                    ConfigManager.instance.getPlayers().getInt("Punishments." + num + ".Level." + p.getName())));
                 }
             }
             return;
         }
-        sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_player, args[0], args[1], 0)));
+        try{
+            sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_player, args[0], args[1], 0)));
+        }catch(ArrayIndexOutOfBoundsException e){
+            sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_player, args[0], "null", 0)));
+        }
     }
 }
