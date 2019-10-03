@@ -20,12 +20,12 @@ public class ForgiveCommand {
     /**
      * Executes the Forgive command.
      *
-     * @param sender  Source of the command
-     * @param cmd Command which was executed
-     * @param label   Alias of the command which was used
-     * @param args    Passed command arguments
+     * @param sender Source of the command
+     * @param cmd    Command which was executed
+     * @param label  Alias of the command which was used
+     * @param args   Passed command arguments
      */
-    public static void forgiveCommand(CommandSender sender, Command cmd, String label, String[] args){
+    public static void forgiveCommand(CommandSender sender, Command cmd, String label, String[] args) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         if (args.length <= 1) {
@@ -33,45 +33,40 @@ public class ForgiveCommand {
             return;
         }
         String p = args[0];
-        try{
+        try {
             for (String num : UwUPunishments.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
                 if (UwUPunishments.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
-                    ConfigManager.instance.getPlayers().get("Punishments."+num+"."+args[0]);
+                    ConfigManager.instance.getPlayers().get("Punishments." + num + "." + args[0]);
                 }
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             sender.sendMessage(ChatUtils.phReplace(Vars.forgive_not_found, args[1], "%reason%", 0));
             return;
         }
-        if (p != null) {
-            for (String num : UwUPunishments.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
-                if (UwUPunishments.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
-                    // set vl
+        for (String num : UwUPunishments.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
+            if (UwUPunishments.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
+                // set vl
 
-                    ConfigUtils.setVl(p, num, false, -1);
+                ConfigUtils.setVl(p, num, false, -1);
 
-                    // set log
-                    LogUtils.logToFile(ChatUtils.logReplace(UwUPunishments.instance.getConfig().getString("log.punish"),
-                            dtf.format(now), sender.getName(), p, args[1], ConfigManager.instance.getPlayers()
-                                    .getInt("Punishments." + num + ".Level." + p)));
+                // set log
+                LogUtils.logToFile(ChatUtils.logReplace(UwUPunishments.instance.getConfig().getString("log.punish"),
+                        dtf.format(now), sender.getName(), p, args[1], ConfigManager.instance.getPlayers()
+                                .getInt("Punishments." + num + ".Level." + p)));
 
-                    // send message
+                // send message
 
-                    sender.sendMessage(
-                            ChatUtils.phReplace(Vars.ps_msg, p, args[1], (int) ConfigManager.instance
-                                    .getPlayers().get("Punishments." + num + ".Level." + p)));
+                sender.sendMessage(
+                        ChatUtils.phReplace(Vars.ps_msg, p, args[1], (int) ConfigManager.instance
+                                .getPlayers().get("Punishments." + num + ".Level." + p)));
 
-                    // do command
-                    ConfigUtils.doCmd(p,true, num, args[1]);
+                // do command
+                ConfigUtils.doCmd(p, true, num, args[1]);
 
-                    ConfigManager.instance.savePlayers();
-                    return;
-                }
+                ConfigManager.instance.savePlayers();
+                return;
             }
-            sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_type, args[0], args[2], 0)));
-
-        } else {
-            sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_player, args[0], args[2], 0)));
         }
+        sender.sendMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.no_type, args[0], args[1], 0)));
     }
 }
