@@ -6,6 +6,11 @@ authors: [Sms_Gamer]
 description: PUwUnish peOwOple.
 website: https://www.spigotmc.org/resources/uwupunishments-actually-tiny.70021/
 commands:
+  uwupunishments:
+    usage: /uwupunishments [command] [arguments...]
+    description: Main command.
+    aliases:
+      - uwup
   punish:
     usage: /punish <player> <broadcast> <reason>
     description: Punish someone.
@@ -29,6 +34,9 @@ commands:
       - svl
       - setvl
 permissions:
+  uwu.main.use:
+    description: Allows use of the main command.
+    default: true
   uwu.punish.use:
     description: Allows to Punish someone.
     default: op
