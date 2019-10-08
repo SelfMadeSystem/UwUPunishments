@@ -17,7 +17,7 @@ import java.io.File;
  */
 public class UwUPunishments extends JavaPlugin implements Listener {
 
-    public boolean isSql = false;
+    public static boolean isSql = false;
 
     public static UwUPunishments instance;
 
@@ -72,7 +72,7 @@ public class UwUPunishments extends JavaPlugin implements Listener {
             saveDefaultConfig();
         }else{
             FileConfiguration config =  YamlConfiguration.loadConfiguration(configFile);
-            if(config.getDouble("config-version")<2.0){
+            if(config.getDouble("config-version")<2.1){
                 Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED+"\n\n" +
                         "   ____        _      _       _           _    _____             __ _         ______ _ _        \n" +
                         "  / __ \\      | |    | |     | |         | |  / ____|           / _(_)       |  ____(_) |       \n" +

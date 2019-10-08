@@ -1,7 +1,6 @@
 # Do not change.
-config-version: 2.0
+config-version: 2.1
 
-# NOT CURRENTLY IN USE!!!
 MySql:
   # Use MySQL to update players.yml?
   enabled: false
@@ -10,7 +9,7 @@ MySql:
   database: 'database'
   username: 'username'
   password: 'password'
-  table: 'UwUPunishments'
+  table: 'UwUP'
 
 # Message done when broadcasting a punishment.
 bc_msg: '&cUwU >> %player% has been punished for %reason%.'
