@@ -56,8 +56,4 @@ public class ConfigUtils {
             }
         }
     }
-
-    public static void setPlayersConfig(String path, Object value){
-
-    }
 }
