@@ -50,14 +50,14 @@ public class ForgiveCommand {
                 ConfigUtils.setVl(p, num, false, -1);
 
                 // set log
-                LogUtils.logToFile(ChatUtils.logReplace(UwUPunishments.instance.getConfig().getString("log.punish"),
+                LogUtils.logToFile(ChatUtils.logReplace(UwUPunishments.instance.getConfig().getString("log.forgive"),
                         dtf.format(now), sender.getName(), p, args[1], ConfigManager.instance.getPlayers()
                                 .getInt("Punishments." + num + ".Level." + p)));
 
                 // send message
 
                 sender.sendMessage(
-                        ChatUtils.phReplace(Vars.ps_msg, p, args[1], (int) ConfigManager.instance
+                        ChatUtils.phReplace(Vars.forgive, p, args[1], (int) ConfigManager.instance
                                 .getPlayers().get("Punishments." + num + ".Level." + p)));
 
                 // do command
