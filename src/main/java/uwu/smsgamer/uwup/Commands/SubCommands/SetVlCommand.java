@@ -9,6 +9,7 @@ import uwu.smsgamer.uwup.ConfigManager.ConfigManager;
 import uwu.smsgamer.uwup.Utils.ChatUtils;
 import uwu.smsgamer.uwup.Utils.ConfigUtils;
 import uwu.smsgamer.uwup.Utils.LogUtils;
+import uwu.smsgamer.uwup.Utils.MySQLUtils;
 import uwu.smsgamer.uwup.UwUPunishments;
 import uwu.smsgamer.uwup.Vars.Vars;
 
@@ -38,7 +39,7 @@ public class SetVlCommand {
         if (p != null && !p.hasPermission("uwu.pu.exempt")) {
             for (String num : UwUPunishments.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
                 if (UwUPunishments.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
-                    //svl Sms_Gamer spam 7 fo
+                    MySQLUtils.updatePlayers(num, args[0]);
 
                     // Set vl
                     ConfigUtils.setVl(p.getName(), num, true, Integer.parseInt(args[2]));
@@ -64,6 +65,9 @@ public class SetVlCommand {
                     sender.sendMessage(
                             ChatUtils.phReplace(Vars.set_vl, p.getName(), args[1],
                                     ConfigManager.instance.getPlayers().getInt("Punishments." + num + ".Level." + p.getName())));
+                    MySQLUtils.makeTable(num);
+                    MySQLUtils.insertToTable(num, args[0],
+                            ConfigManager.instance.getPlayers().getInt("Punishments." + num + ".Level." + p.getName()));
                     return;
                 }
             }

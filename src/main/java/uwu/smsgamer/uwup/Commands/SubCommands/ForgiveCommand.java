@@ -7,6 +7,7 @@ import uwu.smsgamer.uwup.ConfigManager.ConfigManager;
 import uwu.smsgamer.uwup.Utils.ChatUtils;
 import uwu.smsgamer.uwup.Utils.ConfigUtils;
 import uwu.smsgamer.uwup.Utils.LogUtils;
+import uwu.smsgamer.uwup.Utils.MySQLUtils;
 import uwu.smsgamer.uwup.UwUPunishments;
 import uwu.smsgamer.uwup.Vars.Vars;
 
@@ -45,6 +46,7 @@ public class ForgiveCommand {
         }
         for (String num : UwUPunishments.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
             if (UwUPunishments.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
+                MySQLUtils.updatePlayers(num, args[0]);
                 // set vl
 
                 ConfigUtils.setVl(p, num, false, -1);
@@ -64,6 +66,9 @@ public class ForgiveCommand {
                 ConfigUtils.doCmd(p, true, num, args[1]);
 
                 ConfigManager.instance.savePlayers();
+                MySQLUtils.makeTable(num);
+                MySQLUtils.insertToTable(num, args[0],
+                        ConfigManager.instance.getPlayers().getInt("Punishments." + num + ".Level." + p));
                 return;
             }
         }

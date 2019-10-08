@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import uwu.smsgamer.uwup.ConfigManager.ConfigManager;
 import uwu.smsgamer.uwup.Utils.ChatUtils;
+import uwu.smsgamer.uwup.Utils.MySQLUtils;
 import uwu.smsgamer.uwup.UwUPunishments;
 import uwu.smsgamer.uwup.Vars.Vars;
 
@@ -32,6 +33,7 @@ public class CheckVlCommand {
         Player p = Bukkit.getPlayer(args[0]);
         if (p != null && p.isOnline()) {
             for (String num : UwUPunishments.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
+                MySQLUtils.updatePlayers(num, args[0]);
                 if (args.length > 1) {
                     if (UwUPunishments.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
                         sender.sendMessage(ChatUtils.phReplace(Vars.check_vl, p.getName(), num,
