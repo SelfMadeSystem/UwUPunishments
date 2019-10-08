@@ -32,7 +32,7 @@ public class Commands implements CommandExecutor {
         return true;
     }
 
-    public boolean commandSelector(CommandSender sender, Command cmd, String label, String[] args){
+    public static boolean commandSelector(CommandSender sender, Command cmd, String label, String[] args){
         if(cmd.getName().equalsIgnoreCase("punish")&&sender.hasPermission("uwu.punish.use")){
             PunishCommand.punishCommand(sender, cmd, label, args);
             return true;
