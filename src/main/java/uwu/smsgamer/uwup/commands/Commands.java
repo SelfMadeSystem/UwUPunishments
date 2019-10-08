@@ -3,10 +3,7 @@ package uwu.smsgamer.uwup.Commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import uwu.smsgamer.uwup.Commands.SubCommands.CheckVlCommand;
-import uwu.smsgamer.uwup.Commands.SubCommands.ForgiveCommand;
-import uwu.smsgamer.uwup.Commands.SubCommands.PunishCommand;
-import uwu.smsgamer.uwup.Commands.SubCommands.SetVlCommand;
+import uwu.smsgamer.uwup.Commands.SubCommands.*;
 import uwu.smsgamer.uwup.Utils.ChatUtils;
 import uwu.smsgamer.uwup.Vars.Vars;
 
@@ -28,6 +25,14 @@ public class Commands implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("uwupunishments")) {
+            MainCommand.mainCommand(sender, cmd, label, args);
+        }
+        commandSelector(sender, cmd, label, args);
+        return true;
+    }
+
+    public boolean commandSelector(CommandSender sender, Command cmd, String label, String[] args){
         if(cmd.getName().equalsIgnoreCase("punish")&&sender.hasPermission("uwu.punish.use")){
             PunishCommand.punishCommand(sender, cmd, label, args);
             return true;
