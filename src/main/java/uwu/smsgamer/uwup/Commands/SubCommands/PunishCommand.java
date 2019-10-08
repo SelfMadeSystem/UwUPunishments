@@ -30,39 +30,32 @@ public class PunishCommand {
     public static void punishCommand(CommandSender sender, Command cmd, String label, String[] args){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        if (args.length <= 2) {
-            sender.sendMessage(ChatColor.RED + "UwU >> Usage: /"+label+" <player> <broadcast> <reason>");
+        if (args.length <= 1) {
+            sender.sendMessage(ChatColor.RED + "UwU >> Usage: /"+label+" <player> <reason>");
             return;
         }
         Player p = Bukkit.getPlayer(args[0]);
         if (p != null && !p.hasPermission("uwu.pu.exempt")) {
             for (String num : UwUPunishments.instance.getConfig().getConfigurationSection("types").getKeys(false)) {
-                if (UwUPunishments.instance.getConfig().getStringList("types." + num + ".alias").contains(args[2])) {
+                if (UwUPunishments.instance.getConfig().getStringList("types." + num + ".alias").contains(args[1])) {
 
-                    // broadcast
-
-                    if (args[1].startsWith("t") || args[1].startsWith("y")) {
-                        Bukkit.broadcastMessage(ChatUtils.colorize(ChatUtils.phReplace(Vars.bc_msg, p.getName(),
-                                args[2], (int) ConfigManager.instance.getPlayers()
-                                        .get("Punishments." + num + ".Level." + p.getName()))));
-                    }
                     // set vl
 
                     ConfigUtils.setVl(p.getName(), num, false, 1);
 
                     // set log
                     LogUtils.logToFile(ChatUtils.logReplace(UwUPunishments.instance.getConfig().getString("log.punish"),
-                            dtf.format(now), sender.getName(), p.getName(), args[2], ConfigManager.instance.getPlayers()
+                            dtf.format(now), sender.getName(), p.getName(), args[1], ConfigManager.instance.getPlayers()
                                     .getInt("Punishments." + num + ".Level." + p.getName())));
 
                     // send message
 
                     sender.sendMessage(
-                            ChatUtils.phReplace(Vars.ps_msg, p.getName(), args[2], (int) ConfigManager.instance
+                            ChatUtils.phReplace(Vars.ps_msg, p.getName(), args[1], (int) ConfigManager.instance
                                     .getPlayers().get("Punishments." + num + ".Level." + p.getName())));
 
                     // do command
-                    ConfigUtils.doCmd(p.getName(),false, num, args[2]);
+                    ConfigUtils.doCmd(p.getName(),false, num, args[1]);
 
                     ConfigManager.instance.savePlayers();
                     return;
