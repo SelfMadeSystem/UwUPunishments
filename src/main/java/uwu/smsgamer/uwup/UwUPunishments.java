@@ -8,20 +8,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import uwu.smsgamer.uwup.Commands.Commands;
 import uwu.smsgamer.uwup.ConfigManager.ConfigManager;
+import uwu.smsgamer.uwup.Utils.MySQLUtils;
 
-import java.sql.Connection;
 import java.io.File;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 /**
  * Main class for this plugin.
  */
 public class UwUPunishments extends JavaPlugin implements Listener {
 
-    private Connection connection;
-    public String host, database, username, password, table;
-    public int port;
     public boolean isSql = false;
 
     public static UwUPunishments instance;
@@ -55,6 +50,7 @@ public class UwUPunishments extends JavaPlugin implements Listener {
      * Used to do stuff when the plugin gets disabled (before reload, on server stop)
      */
     public void onDisable() {
+        MySQLUtils.disconnect();
     }
 
     /**
@@ -94,35 +90,13 @@ public class UwUPunishments extends JavaPlugin implements Listener {
     }
 
     public void mysqlSetup(){
-        host = this.getConfig().getString("MySql.host");
-        port = this.getConfig().getInt("MySql.port");
-        database = this.getConfig().getString("MySql.database");
-        username = this.getConfig().getString("MySql.username");
-        password = this.getConfig().getString("MySql.password");
-        table = this.getConfig().getString("MySql.table");
+        MySQLUtils.host = this.getConfig().getString("MySql.host");
+        MySQLUtils.port = this.getConfig().getInt("MySql.port");
+        MySQLUtils.database = this.getConfig().getString("MySql.database");
+        MySQLUtils.username = this.getConfig().getString("MySql.username");
+        MySQLUtils.password = this.getConfig().getString("MySql.password");
+        MySQLUtils.tablePrefix = this.getConfig().getString("MySql.table");
 
-        try{
-            synchronized (this){
-                if(getConnection() != null && !getConnection().isClosed()){
-                    return;
-                }
-
-                Class.forName("com.mysql.jdbc.Driver");
-                setConnection( DriverManager.getConnection("jdbc:mysql://" + this.host + ":"
-                        + this.port + "/" + this.database, this.username, this.password));
-
-                Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "MYSQL CONNECTED");
-            }
-        }catch(SQLException | ClassNotFoundException e){
-            e.printStackTrace();
-        }
-    }
-
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+        MySQLUtils.connect();
     }
 }
