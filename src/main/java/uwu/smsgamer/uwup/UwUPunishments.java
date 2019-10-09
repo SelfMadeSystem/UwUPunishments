@@ -36,11 +36,13 @@ public class UwUPunishments extends JavaPlugin implements Listener {
         }
         getCommand("punish").setExecutor(cmds);
 
+        getCommand("punish").setTabCompleter(new Commands());
+
         getCommand("forgive").setExecutor(cmds);
 
         getCommand("checkviolations").setExecutor(cmds);
 
-        //getCommand("weload").setExecutor(cmds);
+        getCommand("uwupunishments").setExecutor(cmds);
 
         getCommand("setviolations").setExecutor(cmds);
 
