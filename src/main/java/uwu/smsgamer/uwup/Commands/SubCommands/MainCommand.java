@@ -1,11 +1,7 @@
 package uwu.smsgamer.uwup.Commands.SubCommands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import uwu.smsgamer.uwup.ConfigManager.ConfigManager;
-import uwu.smsgamer.uwup.Utils.ChatUtils;
-import uwu.smsgamer.uwup.UwUPunishments;
 import uwu.smsgamer.uwup.Vars.Vars;
 
 /**

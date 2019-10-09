@@ -1,7 +1,6 @@
 package uwu.smsgamer.uwup.Utils;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import uwu.smsgamer.uwup.ConfigManager.ConfigManager;
 import uwu.smsgamer.uwup.UwUPunishments;
 

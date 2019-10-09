@@ -11,8 +11,6 @@ import uwu.smsgamer.uwup.Utils.MySQLUtils;
 import uwu.smsgamer.uwup.UwUPunishments;
 import uwu.smsgamer.uwup.Vars.Vars;
 
-import java.util.Objects;
-
 /**
  * CheckVl command.
  */

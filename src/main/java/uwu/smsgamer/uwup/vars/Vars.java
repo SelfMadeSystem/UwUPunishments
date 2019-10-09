@@ -9,7 +9,6 @@ import uwu.smsgamer.uwup.UwUPunishments;
 public class Vars {
 
     public static String ps_msg = ChatUtils.colorize((String) UwUPunishments.instance.getConfig().get("punished_msg"));
-    public static String bc_msg = ChatUtils.colorize((String) UwUPunishments.instance.getConfig().get("bc_msg"));
     public static String no_type = ChatUtils.colorize((String) UwUPunishments.instance.getConfig().get("no_type"));
     public static String no_player = ChatUtils.colorize((String) UwUPunishments.instance.getConfig().get("no_player"));
     public static String forgive = ChatUtils.colorize((String) UwUPunishments.instance.getConfig().get("forgive_msg"));
