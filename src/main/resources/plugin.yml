@@ -12,7 +12,7 @@ commands:
     aliases:
       - uwup
   punish:
-    usage: /punish <player> <broadcast> <reason>
+    usage: /punish <player> <reason>
     description: Punish someone.
     aliases:
       - pns
@@ -42,9 +42,6 @@ permissions:
     default: op
   uwu.forgive.use:
     description: Allows to forgive someone.
-    default: op
-  uwu.pu.reload.use:
-    description: Allows to reload the plugin.
     default: op
   uwu.checkvl.use:
     description: Allows to check violations of someone.

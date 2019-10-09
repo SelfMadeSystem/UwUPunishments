@@ -11,8 +11,6 @@ MySql:
   password: 'password'
   table: 'UwUP'
 
-# Message done when broadcasting a punishment.
-bc_msg: '&cUwU >> %player% has been punished for %reason%.'
 # Message done when punishing someone.
 punished_msg: '&cUwU >>&b %player% has been punished for %reason%. vl: %vl%'
 # Message done when forgiving someone.

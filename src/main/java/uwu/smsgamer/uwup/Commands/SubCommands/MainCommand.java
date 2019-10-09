@@ -1,10 +1,8 @@
 package uwu.smsgamer.uwup.Commands.SubCommands;
 
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import uwu.smsgamer.uwup.ConfigManager.ConfigManager;
 import uwu.smsgamer.uwup.Utils.ChatUtils;
 import uwu.smsgamer.uwup.UwUPunishments;
@@ -23,5 +21,31 @@ public class MainCommand {
      * @param args   Passed command arguments
      */
     public static void mainCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if(!sender.hasPermission("uwu.main.use")){
+            sender.sendMessage(Vars.no_perm);
+            return;
+        }
+        sender.sendMessage("This command does nothing as of right now.");
+        /*if(args.length == 0){
+            sender.sendMessage(ChatColor.RED + "/"+label+" [reload] [...]");
+            return;
+        }
+        if(args[0].equalsIgnoreCase("reload")){
+            if(sender.hasPermission("uwu.reload")){
+                try {
+                    UwUPunishments.instance.rC();
+                    UwUPunishments.instance.reloadConfig();
+                    sender.sendMessage(
+                            ChatUtils.phReplace(Vars.reload_success, sender.getName(), "%reason%", 0));
+                }catch (Exception e){
+                    e.printStackTrace();
+                    sender.sendMessage(
+                            ChatUtils.phReplace(Vars.reload_error, sender.getName(), "%reason%", 0));
+                }
+            }else {
+                sender.sendMessage(Vars.no_perm);
+                return;
+            }
+        }*/
     }
 }
