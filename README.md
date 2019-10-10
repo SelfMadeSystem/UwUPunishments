@@ -28,7 +28,7 @@ __Planned features:__
 - Make an API
 
 __Why choose this one over other ones?__
-It supports SQL, it has very customizable punishments and ways to forgive players.
+It supports SQL, it has very customizable punishments and ways to forgive players. The messages are customizable. This plugin also has tab completion for people that have the permission. This plugin is open source so you can do anything to this plugin, just please don't claim it as your own.
 
 __How to install:__
 Just drag and drop this plugin into the /plugins directory in your server and reload/restart the server or load it with plugman. It's recommended to restart the server. 
