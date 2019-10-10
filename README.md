@@ -38,12 +38,12 @@ __Permissions and commands:__
 Punishes someone
 /punish <player> <broadcast, true/yes false/no> <reason>
 Permission: uwu.forgive.use
-Aliases: pu
+Aliases: pns
 
 Forgives someone
 /forgive <player> <reason>
 Permission: uwu.forgive.use
-Aliases: fo
+Aliases: frg
 
 Sets someone's violation level.
 /setviolations <player> <reason> <do-action> <amount>
@@ -53,11 +53,7 @@ Aliases: svl, setvl
 Checks someone's violation level
 /checkviolations <player> [reason]
 Permission: uwu.forgive.use
-Aliases: cv, checkvl
-
-Reloads the configuration (sometimes doesn't work, better to reload it via a plugin manager)
-/weload
-Permission: uwu.pu.reload.use
+Aliases: cvl, checkvl
 
 Prevents anyone from changing your punishment level.
 Permission: uwu.pu.exempt
