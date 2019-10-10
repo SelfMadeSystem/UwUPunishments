@@ -28,7 +28,7 @@ __Planned features:__
 - Make an API
 
 __Why choose this one over other ones?__
-Right now, not much reason aside from it's Async (won't affect TPS at all) and it's really tiny, and I plan to keep it that way. It does work, but it doesn't have all the features I would like it to have yet, but they will be implemented soon because I know the features I want and how to implement them (except SQL, I hate that bs)
+It supports SQL, it has very customizable punishments and ways to forgive players.
 
 __How to install:__
 Just drag and drop this plugin into the /plugins directory in your server and reload/restart the server or load it with plugman. It's recommended to restart the server. 
