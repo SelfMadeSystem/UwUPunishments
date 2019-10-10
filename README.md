@@ -18,14 +18,13 @@ __Current features:__
 - Forgive any player with one command.
 - Highly customizable punishments.
 - Customizable messages.
+- SQL support.
 - Super tiny plugin and shouldn't affect tps.
 
 __Planned features:__ 
 (in order that I think I will do them, from very likely, to not very likely)
 - Better config.
-- Fix /weload
-- Bungee support.
-- SQL support.
+- Make an API
 - Make an API
 
 __Why choose this one over other ones?__
