@@ -1,5 +1,5 @@
 # UwUPunishments
-UwUPunishments for MatrixMC
+UwUPunishments for MatrixPVP
 
 Created with eclipse and converted to Maven. Using IntelliJ now.
 
