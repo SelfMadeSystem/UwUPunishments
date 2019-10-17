@@ -3,7 +3,7 @@ UwUPunishments for MatrixPVP
 
 Created with eclipse and converted to Maven. Using IntelliJ now.
 
-Thanks to UntouchedOdin0 (https://www.spigotmc.org/members/devbukkit.28513/) for making the RADME.md 
+Thanks to UntouchedOdin0 (https://www.spigotmc.org/members/devbukkit.28513/) for making the README.md 
 
 A new, simple, and tiny punishment plugin for admins.
 
